@@ -1,8 +1,7 @@
 <?php
 require_once("./connect.php");
 require_once "C:/xampp/htdocs/php_web/component/header.html";
-
-$stmt = $conn->prepare("SELECT * FROM book_manager WHERE id = :id");
+$stmt = $conn->prepare("SELECT * FROM user_manager WHERE user_id = :id");
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if (isset($_GET["id"])) {
     $stmt->execute(array("id" => $_GET["id"]));
@@ -36,29 +35,20 @@ $rows = $stmt->fetchAll();
         <h1>Quản lý sách</h1>
         <form action="editAction.php" method="post" autocomplete="off">
             <div class="input-group mb-2">
-                <input readonly type="text" name="id" class="form-control" id="inlineFormInputGroup"
-                value="<?php echo isset($rows[0]["id"]) ? $rows[0]["id"] : ""?>">
+                <input readonly type="text" name="user_id" class="form-control" id="inlineFormInputGroup"
+                value="<?php echo isset($rows[0]["user_id"]) ? $rows[0]["user_id"] : ""?>">
             </div>
             <div class="input-group mb-2">
-                <input required type="text" name="book_name" class="form-control" id="inlineFormInputGroup"
-                    placeholder="Nhập tên sách" value="<?php echo isset($rows[0]["book_name"]) ? $rows[0]["book_name"] : ""?>">
-                <span>
-                    <?php echo isset($err["book_name"]) ? $err["book_name"] : ""; ?>
-                </span>
+                <input required type="text" name="fname" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Nhập tên sách" value="<?php echo isset($rows[0]["fname"]) ? $rows[0]["fname"] : ""?>">
             </div>
             <div class="input-group mb-2">
-                <input required type="text" name="author" class="form-control" id="inlineFormInputGroup"
-                    placeholder="Nhập tên tác giả" value="<?php echo isset($rows[0]["author"]) ? $rows[0]["author"] : ""?>">
-                <span>
-                    <?php echo isset($err["author"]) ? $err["author"] : ""; ?>
-                </span>
+                <input required type="text" name="lname" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Nhập tên tác giả" value="<?php echo isset($rows[0]["lname"]) ? $rows[0]["lname"] : ""?>">
             </div>
             <div class="input-group mb-2">
-                <input required type="text" name="publish_year" class="form-control" id="inlineFormInputGroup"
-                    placeholder="Nhập năm xuất bản sách" value="<?php echo isset($rows[0]["publish_year"]) ? $rows[0]["publish_year"] : ""?>">
-                <span>
-                    <?php echo isset($err["publish_year"]) ? $err["publish_year"] : ""; ?>
-                </span>
+                <input required type="email" name="email" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Nhập năm xuất bản sách" value="<?php echo isset($rows[0]["email"]) ? $rows[0]["email"] : ""?>">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Chỉnh sửa</button>
         </form>
