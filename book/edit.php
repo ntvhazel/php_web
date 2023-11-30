@@ -8,6 +8,7 @@ if (isset($_GET["id"])) {
     $stmt->execute(array("id" => $_GET["id"]));
 }
 $rows = $stmt->fetchAll();
+if (sizeof($rows) != 0){
 ?>
 
 
@@ -65,4 +66,7 @@ $rows = $stmt->fetchAll();
 </body>
 
 </html>
+<?php } else {
+        echo "<h3>Item not available !!</h3>";
+    }?>
 
