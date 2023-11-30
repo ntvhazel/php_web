@@ -76,11 +76,8 @@ $response = $stmt->fetchAll();
                             <?php echo $row["email"]; ?>
                         </td>
                         <td style="display: flex; flex-direction: row; gap: 10px;">
-                            <a class="btn btn-primary" href="./edit.php?id=<?php echo $row["user_id"] ?>">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row["user_id"];?>">
                                 Edit
-                            </a>
-                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row["user_id"];?>">
-                                Edit on popup
                             </button>
                             <a class=" btn btn-danger" href="./deleteAction.php?id=<?php echo $row["user_id"] ?>">
                                 Remove

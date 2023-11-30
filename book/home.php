@@ -87,63 +87,11 @@ $response = $stmt->fetchAll();
                             <a class="btn btn-primary" href="./edit.php?id=<?php echo $row["id"] ?>">
                                 Edit
                             </a>
-                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Edit on popup
-                            </button>
                             <a class=" btn btn-danger" href="./deleteAction.php?id=<?php echo $row["id"] ?>">
                                 Remove
                             </a>
                         </td>
                     </tr>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="editAction.php" method="post" autocomplete="off">
-                                        <div class="input-group mb-2">
-                                            <input readonly type="text" name="id" class="form-control"
-                                                id="inlineFormInputGroup"
-                                                value="<?php echo isset($row["id"]) ? $row["id"] : "" ?>">
-                                        </div>
-                                        <div class="input-group mb-2">
-                                            <input required type="text" name="book_name" class="form-control"
-                                                id="inlineFormInputGroup" placeholder="Nhập tên sách"
-                                                value="<?php echo isset($row["book_name"]) ? $row["book_name"] : "" ?>">
-                                            <span>
-                                                <?php echo isset($err["book_name"]) ? $err["book_name"] : ""; ?>
-                                            </span>
-                                        </div>
-                                        <div class="input-group mb-2">
-                                            <input required type="text" name="author" class="form-control"
-                                                id="inlineFormInputGroup" placeholder="Nhập tên tác giả"
-                                                value="<?php echo isset($row["author"]) ? $row["author"] : "" ?>">
-                                            <span>
-                                                <?php echo isset($err["author"]) ? $err["author"] : ""; ?>
-                                            </span>
-                                        </div>
-                                        <div class="input-group mb-2">
-                                            <input required type="text" name="publish_year" class="form-control"
-                                                id="inlineFormInputGroup" placeholder="Nhập năm xuất bản sách"
-                                                value="<?php echo isset($row["publish_year"]) ? $row["publish_year"] : "" ?>">
-                                            <span>
-                                                <?php echo isset($err["publish_year"]) ? $err["publish_year"] : ""; ?>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 <?php } ?>
             </tbody>
         </table>
