@@ -19,18 +19,34 @@
                 header("location: ./home.php");
                 break;
             case "login":
-                $stmt = $conn->prepare("SELECT * FROM authen_user ");
+                // $stmt = $conn->prepare("SELECT * FROM authen_user");
+                // $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                // $stmt->execute();
+                // $response = $stmt->fetchAll();
+                // foreach($response as $r){
+                //     if ($r['user_name'] === $user_name && $r['pwd'] === $pwd){
+                //         $_SESSION["active"] = TRUE;
+                //         header("location: ./home.php");
+                //     } else {
+                //         header("location: ./login.php");
+                //     }
+                // }
+                $stmt = $conn->prepare("SELECT * FROM authen_user where user_name = :user_name and pwd = :pwd");
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                $stmt->execute(array(
+                    'user_name' => $user_name,
+                    'pwd' => $pwd
+                ));
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $stmt->execute();
                 $response = $stmt->fetchAll();
-                foreach($response as $r){
-                    if ($r['user_name'] === $user_name && $r['pwd'] === $pwd){
-                        $_SESSION["active"] = TRUE;
-                        header("location: ./home.php");
-                    } else {
-                        header("location: ./login.php");
-                    }
+                if (sizeof($response) != 0){
+                    $_SESSION["active"] = TRUE;
+                    header("location: ./home.php");
+                } else {
+                    header("location: ./login.php");
                 }
+                break;
         }
     } else {
         header('location: ./home.php');
